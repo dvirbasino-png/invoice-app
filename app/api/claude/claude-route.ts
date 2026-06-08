@@ -1,18 +1,31 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
-
-const MCP_SERVERS = [
-  { type: "url", url: "https://gmailmcp.googleapis.com/mcp/v1", name: "gmail-mcp" },
-  { type: "url", url: "https://drivemcp.googleapis.com/mcp/v1", name: "drive-mcp" },
-]
+import { authOptions } from "../auth/[...nextauth]/route"
 
 export async function POST(req: NextRequest) {
-  const session = await getServerSession()
+  const session = await getServerSession(authOptions)
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
   const body = await req.json()
+  const accessToken = session.accessToken
+
+  // Pass the user's Google access token to MCP servers
+  const mcpServers = [
+    {
+      type: "url",
+      url: "https://gmailmcp.googleapis.com/mcp/v1",
+      name: "gmail-mcp",
+      authorization_token: accessToken,
+    },
+    {
+      type: "url",
+      url: "https://drivemcp.googleapis.com/mcp/v1",
+      name: "drive-mcp",
+      authorization_token: accessToken,
+    },
+  ]
 
   const response = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
@@ -25,7 +38,7 @@ export async function POST(req: NextRequest) {
       model: "claude-opus-4-5",
       max_tokens: body.max_tokens || 6000,
       messages: body.messages,
-      mcp_servers: body.mcp_servers || MCP_SERVERS,
+      mcp_servers: mcpServers,
     }),
   })
 

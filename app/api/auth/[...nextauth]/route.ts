@@ -1,4 +1,4 @@
-import NextAuth, { DefaultSession } from "next-auth"
+import NextAuth, { DefaultSession, NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 
 declare module "next-auth" {
@@ -9,7 +9,7 @@ declare module "next-auth" {
 
 const NEXTAUTH_URL = "https://invoice-app-eta-nine.vercel.app"
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -54,7 +54,7 @@ const handler = NextAuth({
     error: "/login",
   },
   secret: process.env.NEXTAUTH_SECRET,
-  url: NEXTAUTH_URL,
-})
+}
 
+const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST }
