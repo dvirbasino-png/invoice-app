@@ -7,6 +7,8 @@ declare module "next-auth" {
   }
 }
 
+const NEXTAUTH_URL = "https://invoice-app-eta-nine.vercel.app"
+
 const handler = NextAuth({
   providers: [
     GoogleProvider({
@@ -16,7 +18,7 @@ const handler = NextAuth({
         params: {
           scope: [
             "openid",
-            "email", 
+            "email",
             "profile",
             "https://www.googleapis.com/auth/gmail.modify",
             "https://www.googleapis.com/auth/drive",
@@ -24,6 +26,7 @@ const handler = NextAuth({
           ].join(" "),
           access_type: "offline",
           prompt: "consent",
+          redirect_uri: `${NEXTAUTH_URL}/api/auth/callback/google`,
         },
       },
     }),
@@ -51,6 +54,7 @@ const handler = NextAuth({
     error: "/login",
   },
   secret: process.env.NEXTAUTH_SECRET,
+  url: NEXTAUTH_URL,
 })
 
 export { handler as GET, handler as POST }
