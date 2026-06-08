@@ -14,7 +14,14 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       authorization: {
         params: {
-          scope: "openid email profile https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets",
+          scope: [
+            "openid",
+            "email", 
+            "profile",
+            "https://www.googleapis.com/auth/gmail.modify",
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/spreadsheets",
+          ].join(" "),
           access_type: "offline",
           prompt: "consent",
         },
@@ -22,9 +29,8 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    async signIn({ account, profile }) {
+    async signIn({ profile }) {
       const email = profile?.email || ""
-      // Restrict to @vega.io only
       if (!email.endsWith("@vega.io")) return false
       return true
     },
