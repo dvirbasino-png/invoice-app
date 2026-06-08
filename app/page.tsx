@@ -119,7 +119,7 @@ export default function Home() {
     setLoadingMsg("Scanning bills@vega.io for invoices...")
     try {
       const data = await callClaude([{ role: "user", content:
-        `Search Gmail for unread emails in the last 30 days sent to bills@vega.io with PDF attachments.
+        `Search Gmail for emails in the last 30 days sent to bills@vega.io with PDF attachments. Include read and unread emails.
 Look for: invoice, חשבונית, bill, receipt, חשבון in subject or body.
 Extract per email: supplier, company_number (ח.פ/עוסק if visible), inv_no, invoice_date (DD/MM/YYYY), date (received DD/MM/YYYY), currency (USD/NIS/ILS/EUR/GBP), amount (final total after VAT, number only), description (brief), notes, gmail_message_id, attachment_filename.
 Return ONLY JSON array max 20:
