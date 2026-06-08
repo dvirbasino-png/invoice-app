@@ -1,0 +1,24 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #F5F0E8;
+  --green-dark: #1B5E42;
+  --green-mid: #2D6A4F;
+  --green-light: #E1F5EE;
+  --green-text: #0F6E56;
+  --yellow: #E8C84A;
+  --yellow-light: #FFF8E1;
+  --yellow-text: #8B6914;
+  --gray-text: #888780;
+  --gray-border: rgba(45, 106, 79, 0.15);
+  --white: #ffffff;
+  --card-bg: #F9F7F2;
+}
+
+html, body { background: var(--cream); min-height: 100vh; }
+
+body { font-family: 'DM Sans', sans-serif; color: #1a1a1a; }
+
+button { font-family: 'DM Sans', sans-serif; cursor: pointer; }
+
+.playfair { font-family: 'Playfair Display', serif; }

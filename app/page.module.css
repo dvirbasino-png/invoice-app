@@ -1,0 +1,49 @@
+.app { background: #F5F0E8; min-height: 100vh; }
+
+.nav { background: #F5F0E8; border-bottom: 0.5px solid rgba(45,106,79,0.2); padding: 0 1.5rem; height: 52px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
+.logo { font-size: 22px; font-weight: 500; color: #1B5E42; letter-spacing: -0.5px; }
+.navRight { display: flex; align-items: center; gap: 12px; }
+.userName { font-size: 13px; color: #2D6A4F; display: none; }
+@media (min-width: 500px) { .userName { display: block; } }
+.avatar { width: 30px; height: 30px; border-radius: 50%; background: #2D6A4F; color: #F5F0E8; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; cursor: default; }
+.signOut { background: transparent; border: 1px solid rgba(45,106,79,0.3); color: #2D6A4F; border-radius: 100px; padding: 4px 12px; font-size: 12px; cursor: pointer; }
+.signOut:hover { background: rgba(45,106,79,0.08); }
+
+.tabs { display: flex; padding: 0 1.5rem; border-bottom: 0.5px solid rgba(45,106,79,0.2); background: #F5F0E8; }
+.tab { padding: 12px 20px; font-size: 13px; color: #888780; cursor: pointer; border: none; background: transparent; border-bottom: 2px solid transparent; }
+.tabActive { color: #1B5E42; border-bottom: 2px solid #1B5E42; font-weight: 500; }
+
+.body { padding: 1.25rem 1rem; max-width: 720px; margin: 0 auto; }
+@media (min-width: 600px) { .body { padding: 1.25rem 1.5rem; } }
+
+.toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; gap: 12px; }
+.title { font-size: 20px; font-weight: 400; color: #1a1a1a; }
+.btnPrimary { background: #E8C84A; color: #1B5E42; border: none; border-radius: 100px; padding: 8px 18px; font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap; }
+.btnPrimary:disabled { background: #ccc; color: #888; cursor: default; }
+
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 1rem; }
+.stat { background: white; border: 0.5px solid rgba(45,106,79,0.15); border-radius: 8px; padding: 10px 12px; }
+.statLabel { font-size: 11px; color: #888780; margin: 0 0 4px; }
+.statVal { font-size: 20px; font-weight: 500; margin: 0; }
+
+.progress { margin-bottom: 1.25rem; }
+.progressRow { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.progressLabel { font-size: 12px; color: #888780; }
+.progressBar { height: 5px; background: rgba(45,106,79,0.15); border-radius: 3px; overflow: hidden; }
+.progressFill { height: 100%; border-radius: 3px; transition: width 0.3s; }
+
+.filters { display: flex; gap: 6px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.filter { padding: 5px 12px; border-radius: 100px; font-size: 12px; cursor: pointer; border: 1px solid rgba(45,106,79,0.2); background: white; color: #5F5E5A; transition: all 0.15s; }
+.filterActive { background: #2D6A4F; color: #F5F0E8; border-color: #2D6A4F; font-weight: 500; }
+.filterCount { display: inline-block; background: rgba(45,106,79,0.1); color: #2D6A4F; border-radius: 100px; padding: 0 5px; margin-right: 3px; font-size: 11px; }
+.filterActive .filterCount { background: rgba(255,255,255,0.2); color: #F5F0E8; }
+
+.error { display: flex; justify-content: space-between; align-items: center; background: #FCEBEB; border: 0.5px solid #A32D2D; border-radius: 8px; padding: 12px 16px; margin-bottom: 1rem; font-size: 13px; color: #A32D2D; }
+.errorClose { background: none; border: none; cursor: pointer; color: #A32D2D; font-weight: 700; font-size: 16px; }
+
+.empty { text-align: center; padding: 4rem 1rem; color: #888780; }
+.emptyIcon { font-size: 36px; margin: 0 0 12px; }
+.emptyTitle { font-size: 16px; color: #5F5E5A; margin: 0 0 6px; }
+.emptySub { font-size: 13px; margin: 0; }
+
+.cards { display: flex; flex-direction: column; gap: 10px; }
