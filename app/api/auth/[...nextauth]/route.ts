@@ -1,5 +1,11 @@
-import NextAuth from "next-auth"
+import NextAuth, { DefaultSession } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
+
+declare module "next-auth" {
+  interface Session extends DefaultSession {
+    accessToken?: string
+  }
+}
 
 const handler = NextAuth({
   providers: [
