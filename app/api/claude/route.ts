@@ -15,19 +15,15 @@ export async function POST(req: NextRequest) {
     const mcpServers = [
       {
         type: "url",
-        url: `https://gmailmcp.googleapis.com/mcp/v1`,
+        url: "https://gmailmcp.googleapis.com/mcp/v1",
         name: "gmail-mcp",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+        authorization_token: accessToken,
       },
       {
         type: "url",
-        url: `https://drivemcp.googleapis.com/mcp/v1`,
+        url: "https://drivemcp.googleapis.com/mcp/v1",
         name: "drive-mcp",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+        authorization_token: accessToken,
       },
     ]
 
@@ -37,6 +33,7 @@ export async function POST(req: NextRequest) {
         "Content-Type": "application/json",
         "x-api-key": process.env.ANTHROPIC_API_KEY!,
         "anthropic-version": "2023-06-01",
+        "anthropic-beta": "mcp-client-2025-04-04",
       },
       body: JSON.stringify({
         model: "claude-opus-4-5",
